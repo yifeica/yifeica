@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="userInput" type="text" size="20">
+    <button id="search">Search</button>
+    <div id="output">
+
+    </div>
+    
+</body>
+<script>
+document.getElementById('search').addEventListener('click',()=>{
+    const wiki_api = "https://en.wikipedia.org/w/api.php"; 
+
+    let searchQuery= document.getElementById('userInput').value;
+    let output = document.getElementById('output');
+
+    //content
+    let params = {
+        action: "query",
+        srsearch: searchQuery,
+        list:"search",
+        prop:"url",
+        format: "json",
+        formatversion:2,
+    };
+    let url = wiki_api + "?origin=*";
+    Object.keys(params).forEach(key=>url += "&" + key + "=" + params[key]);
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.query);
+            const result = data.query.search[0];
+            const wiki_url = encodeURI(`https://en.wikipedia.org/wiki/${result.title}`);
+            
+            output.insertAdjacentHTML('beforeEnd', `
+            <div class="resultItem">
+                <h3 class="resultItem-title">
+                    <a href="${wiki_url}" target="_blank" rel="noopener">${result.title}</a>
+                </h3>
+                <span class="resultItem-snippet">${result.snippet}</span><br>
+            </div>
+        `);
+        })
+        .catch(function(error){console.log(error);});
+
+    //img
+
+    params = {
+        action: "query",
+        titles: searchQuery,
+        prop:"pageimages",
+        pithumbsize:500,
+        format: "json",
+        formatversion:2,
+    };
+
+    url = wiki_api + "?origin=*";
+    Object.keys(params).forEach(key=>url += "&" + key + "=" + params[key]);
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.query);
+            const result = data.query.pages;
+            let output = document.getElementById('output');
+            output.insertAdjacentHTML('beforeEnd', `
+            <img src=${result[0].thumbnail.source}>
+        `);
+        })
+        .catch(function(error){console.log(error);});
+
+})
+</script>
+</html>
