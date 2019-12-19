@@ -20,16 +20,50 @@
             background-image: url(wallpaper.jpg);
         }
     </style>
+    <script>
+        function loadImage(id,targetId){
+            let el = document.getElementById(id)
+            let targetEl=targetId?document.getElementById(targetId):el
+            let imageToLoad
+
+            if(el.dataset.image){
+                imageToLoad=el.dataset.image
+            }else if(typeof el.currentSrc==='undefined'){
+                imageToLoad=el.scr
+            }else{
+                imageToLoad=el.currentSrc
+            }
+
+            if(imageToLoad){
+                let img=new Image();
+                img.src=imageToLoad;
+                img.onload=function(){
+                    targetEl.classList.add('is-loaded')
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded',()=>{
+            loadImage('wallpaper')
+            loadImage('pictureImage','picture')
+        })
+    
+    
+    </script>
 </head>
 
 <body>
-    <div class="wallpaper"></div>
+    <div id="wallpaper" class="wallpaper" data-image="wallpaper.jpg"></div>
     <div class="content">
         <aside class="side">
-            <figure class="picture">
+            <figure id="picture" class="picture">
                 <div class="picture-shadow">
                 </div>
-                <img id="pictureImage" class="picture-image" src="portrait.jpg" alt="Portrait of Yifei Zhang" srcset=""
+                <img id="pictureImage" 
+                    class="picture-image" 
+                    src="portrait.jpg" 
+                    alt="Portrait of Yifei Zhang" 
+                    srcset="portrait.jpg"
                     width="320" height="320">
         </aside>
         <main class="about">
@@ -73,6 +107,18 @@
             </ul>
         </main>
     </div>
+<noscript>
+    <style>
+    .wallpaper{
+        animation-name: zoomOut;
+    }
+    .picture{
+        animation-name: dropIn;
+    }
+    
+    </style>
+
+</noscript>
 </body>
 
 </html>
