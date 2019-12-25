@@ -8,6 +8,9 @@
     <title>Merry Christmas</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
         integrity="sha256-+u54FaX9J+k40eAcg5K2YzICSQjrEYBI9gju5nE3HfY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"
+        integrity="sha256-K6gwVUMyEPd4s9vtZXdCIPySi3r1WhzqpUAw4DR0G9I=" crossorigin="anonymous"></script>
+
     <style>
         @font-face {
             font-family: 'Great Vibes';
@@ -61,6 +64,15 @@
     </div>
 </body>
 <script>
+    var sound = new Howl({
+        src: ['bgm.ogg'],
+        autoplay: true,
+        loop: true,
+        volume: 0.03,
+    });
+    sound.once('load', function () {
+        sound.play();
+    });
     const config = {
         "particles": {
             "number": {

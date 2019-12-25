@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js" integrity="sha256-K6gwVUMyEPd4s9vtZXdCIPySi3r1WhzqpUAw4DR0G9I=" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+</body>
+<script>
+var sound = new Howl({
+  src: ['bgm.mp3'],
+  autoplay: true,
+  loop: true,
+  volume: 0.2,
+});
+sound.once('load', function(){
+  sound.play();
+});
+</script>
+</html>
