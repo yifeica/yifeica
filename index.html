@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,14 @@
     <link rel="stylesheet" href="css/minireset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P4BFWRRLE0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-P4BFWRRLE0');
+    </script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
     <style>
         html {
@@ -21,34 +30,34 @@
         }
     </style>
     <script>
-        function loadImage(id,targetId){
+        function loadImage(id, targetId) {
             let el = document.getElementById(id)
-            let targetEl=targetId?document.getElementById(targetId):el
+            let targetEl = targetId ? document.getElementById(targetId) : el
             let imageToLoad
 
-            if(el.dataset.image){
-                imageToLoad=el.dataset.image
-            }else if(typeof el.currentSrc==='undefined'){
-                imageToLoad=el.scr
-            }else{
-                imageToLoad=el.currentSrc
+            if (el.dataset.image) {
+                imageToLoad = el.dataset.image
+            } else if (typeof el.currentSrc === 'undefined') {
+                imageToLoad = el.scr
+            } else {
+                imageToLoad = el.currentSrc
             }
 
-            if(imageToLoad){
-                let img=new Image();
-                img.src=imageToLoad;
-                img.onload=function(){
+            if (imageToLoad) {
+                let img = new Image();
+                img.src = imageToLoad;
+                img.onload = function () {
                     targetEl.classList.add('is-loaded')
                 }
             }
         }
 
-        document.addEventListener('DOMContentLoaded',()=>{
+        document.addEventListener('DOMContentLoaded', () => {
             loadImage('wallpaper')
-            loadImage('pictureImage','picture')
+            loadImage('pictureImage', 'picture')
         })
-    
-    
+
+
     </script>
 </head>
 
@@ -59,12 +68,8 @@
             <figure id="picture" class="picture">
                 <div class="picture-shadow">
                 </div>
-                <img id="pictureImage" 
-                    class="picture-image" 
-                    src="portrait.jpg" 
-                    alt="Portrait of Yifei Zhang" 
-                    srcset="portrait.jpg"
-                    width="320" height="320">
+                <img id="pictureImage" class="picture-image" src="portrait.jpg" alt="Portrait of Yifei Zhang"
+                    srcset="portrait.jpg" width="320" height="320">
         </aside>
         <main class="about">
             <h1 class="name">
@@ -107,18 +112,18 @@
             </ul>
         </main>
     </div>
-<noscript>
-    <style>
-    .wallpaper{
-        animation-name: zoomOut;
-    }
-    .picture{
-        animation-name: dropIn;
-    }
-    
-    </style>
+    <noscript>
+        <style>
+            .wallpaper {
+                animation-name: zoomOut;
+            }
 
-</noscript>
+            .picture {
+                animation-name: dropIn;
+            }
+        </style>
+
+    </noscript>
 </body>
 
 </html>
